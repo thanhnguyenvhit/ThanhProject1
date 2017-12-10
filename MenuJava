@@ -1,0 +1,136 @@
+/*
+creat by Thanh Nguyen
+*/
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+class menu1 extends JFrame implements ActionListener {
+private static final int FRAME_WIDTH = 600;
+private static final int FRAME_HEIGHT = 400;
+private static final int FRAME_X_ORIGIN = 150;
+private static final int FRAME_Y_ORIGIN = 250;
+//private JLabel response; // not want
+
+private JMenu fileMenu;
+private JMenu editMenu;
+private JMenu insertMenu;
+// then cac muc can thiet
+//private JMenu helpMenu;
+
+// constructor 
+public menu1(){
+Container contentPane;
+//set the frame properties
+setTitle ("Dem menu");
+setSize (FRAME_WIDTH, FRAME_HEIGHT);
+setResizable(false);
+setLocation (FRAME_X_ORIGIN, FRAME_Y_ORIGIN);
+contentPane = getContentPane( );
+contentPane.setLayout(new FlowLayout());
+
+//call methods create two menus and their menu items
+createFileMenu(); //tu tao
+createEditMenu();
+createInsertMenu();
+
+//creat and add them to the menu bar
+JMenuBar menuBar = new JMenuBar();
+setJMenuBar(menuBar);
+menuBar.add(fileMenu);
+menuBar.add(editMenu);
+menuBar.add(insertMenu);
+
+//create and position response label
+//response = new JLabel("Hello, this is your menu tester.");
+//response.setSize(250, 50);
+//contentPane.add(response);
+setDefaultCloseOperation(EXIT_ON_CLOSE);
+} //end constractor
+//----------------------------------------
+public void actionPerformed(ActionEvent event) {
+String menuName;
+menuName = event.getActionCommand();
+
+if (menuName.equals("Quit")) {
+System.exit(0);
+} else if (menuName.equals("PTB2")){
+	new PTB2();
+} else if (menuName.equals("PTB1")){
+	new PTB1();
+}else if (menuName.equals("Save")){
+	new tinh();
+
+
+	
+}else {
+//response.setText("Menu Item '" + menuName + "' is selected.");
+}
+}
+//------------creat menu File-----------------------
+private void createFileMenu( ) {
+JMenuItem item;
+fileMenu = new JMenu("File");
+item = new JMenuItem("PTB2"); //New
+item.addActionListener(this);
+
+fileMenu.add(item);
+item = new JMenuItem("PTB1"); //Open...
+item.addActionListener(this);
+fileMenu.add(item);
+item = new JMenuItem("Save"); //Save
+item.addActionListener(this);
+fileMenu.add(item);
+item = new JMenuItem("Save As..."); //Save As...
+item.addActionListener(this);
+fileMenu.add(item);
+fileMenu.addSeparator(); //add a horizontal separator line
+item = new JMenuItem("Quit"); //Quit
+item.addActionListener(this);
+fileMenu.add(item);
+}
+//---------------------------------------
+
+private void createInsertMenu( ) {
+//JMenuItem item;
+insertMenu = new JMenu("Insert");
+JMenuItem item = new JMenuItem("nsert1"); //New
+item.addActionListener(this);
+insertMenu.add(item);
+item = new JMenuItem("insert2"); //Open...
+item.addActionListener(this);
+insertMenu.add(item);
+item = new JMenuItem("insert3"); //Save
+item.addActionListener(this);
+insertMenu.add(item);
+item = new JMenuItem("test..."); //Save As...
+item.addActionListener(this);
+insertMenu.add(item);
+insertMenu.addSeparator(); //add a horizontal separator line
+item = new JMenuItem("other"); //Quit
+item.addActionListener(this);
+insertMenu.add(item);
+}
+
+//---------------------------------------
+
+private void createEditMenu() {
+JMenuItem item;
+editMenu = new JMenu("Edit");
+item = new JMenuItem("Cut"); //Cut
+item.addActionListener(this);
+editMenu.add(item);
+item = new JMenuItem("Copy"); //Copy
+item.addActionListener(this);
+editMenu.add(item);
+item = new JMenuItem("Paste"); //Paste
+item.addActionListener(this);
+editMenu.add(item);
+}
+//-------------------------------
+public static void main(String[] args) {
+menu1 frame = new menu1();
+frame.setVisible(true);
+}
+
+}
+
